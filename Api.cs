@@ -14,8 +14,12 @@ namespace Weather_Test
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             var response = client.Execute(request);
             var payload = response.Content;
-            //return the content of request to be used
+            //return the content of response to be used
             return payload;
         }
+
+        //get next 10 hours of weather data.
+        //time looks to be stored in UST
+        
     }
 }
