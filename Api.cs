@@ -75,7 +75,7 @@ namespace Weather_Test
         //uvIndex	0
         public float uvIndex { get; set; }
         //visibility	10
-        public int visibility { get; set; }
+        public float visibility { get; set; }
         //ozone	318.1
         public float ozone { get; set; }
     }
