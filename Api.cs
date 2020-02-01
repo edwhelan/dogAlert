@@ -55,7 +55,7 @@ namespace Weather_Test
         //precipType	"rain"
         public string precipType { get; set; }
         //temperature	50
-        public float temperature { get; set; }
+        public decimal temperature { get; set; }
         //apparentTemperature	48.78
         public float apparentTemperature { get; set; }
         //dewPoint	35.97
