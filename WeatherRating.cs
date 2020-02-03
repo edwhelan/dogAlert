@@ -71,7 +71,13 @@ namespace Weather_Test
             {
                 Console.WriteLine("FTC : It is too cold to leave your dogs outside today.");
                 return "It is too cold to leave your dogs outside today.";
-            } else
+            }
+            else if (temperatureAverage >= 80)
+            {
+                Console.WriteLine("FTC: It is too hot to leave your dogs outside today!");
+                return "It is too hot to leave your dogs outside today!";
+            } 
+            else
             {
                 Console.WriteLine("FTC : Your dogs may be left outside today!");
                 return "Your dogs may be left outside today!";
