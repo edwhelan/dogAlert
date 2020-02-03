@@ -10,13 +10,6 @@ namespace Weather_Test
         //consume data to get rating on safety
         //of leaving your dog outside in backyard
 
-        //MVP qualifiers (dog stays inside)
-        // too cold for doggos ==========
-        //weather average = < 35deg
-        //weather average = < 45deg + rain
-        //too hot for doggos ============
-        //weather > 80deg
-        //weather average > 85deg if raining? [source this]
         private string LoadPayload()
         {
             //get the payload from api
@@ -26,6 +19,7 @@ namespace Weather_Test
             ForecastResponse forecastResponse = JsonConvert.DeserializeObject<ForecastResponse>(payload);
             return payload;
         }
+
         public void WeatherRatingPrint()
         {
             //get the payload from api
@@ -41,13 +35,11 @@ namespace Weather_Test
             // both temperature and precipitation probability
             for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine(i);
                 temperatureArray.Add(forecastResponse.hourly.data[i].temperature);
                 precipArray.Add(forecastResponse.hourly.data[i].precipProbability);
-                //Console.WriteLine(forecastResponse.hourly.data[i].summary);
+                Console.WriteLine(UnixTimeStampToDateTime(forecastResponse.hourly.data[i].time));
                 //Console.WriteLine(forecastResponse.hourly.data[i].temperature);
                 //Console.WriteLine(forecastResponse.hourly.data[i].precipProbability);
-
             }
             Console.WriteLine("===========================");
             temperatureArray.ForEach(Console.WriteLine);
@@ -65,6 +57,13 @@ namespace Weather_Test
 
             Console.WriteLine(DogSafetyCheck(tempAverage, precipAverage));
         }
+
+        // too cold for doggos ==========
+        //weather average = < 35deg
+        //weather average = < 45deg + rain
+        //too hot for doggos ============
+        //weather > 80deg
+        //weather average > 85deg if raining?
         public string DogSafetyCheck(decimal temperatureAverage, double precipAverage)
         {
             if ((temperatureAverage <= 35) || (precipAverage >= .5 && temperatureAverage <= 40))
@@ -83,6 +82,14 @@ namespace Weather_Test
                 return "Your dogs may be left outside today!";
             }
         }
-        
+
+        //UTC time converter helper method
+        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dtDateTime;
+        }
     }
 }
