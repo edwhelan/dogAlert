@@ -11,7 +11,11 @@ namespace Weather_Test
             //get and return weather status/rating for dogs
             WeatherRating weatherRating = new WeatherRating();
 
-            weatherRating.WeatherRatingPrint();
+            MessagingAPI messagingApi = new MessagingAPI();
+
+            messagingApi.SendMessage(weatherRating.WeatherRatingPrint());
+
+            //weatherRating.WeatherRatingPrint();
 
         }
     }

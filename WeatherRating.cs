@@ -20,7 +20,7 @@ namespace Weather_Test
             return payload;
         }
 
-        public void WeatherRatingPrint()
+        public string WeatherRatingPrint()
         {
             //get the payload from api
             var payload = new WeatherRating().LoadPayload();
@@ -56,6 +56,7 @@ namespace Weather_Test
             Console.WriteLine("This is your precipitation probability average over the next 10 hours " + precipAverage);
 
             Console.WriteLine(DogSafetyCheck(tempAverage, precipAverage));
+            return DogSafetyCheck(tempAverage, precipAverage);
         }
 
         // too cold for doggos ==========
