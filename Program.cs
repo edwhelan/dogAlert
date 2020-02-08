@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Weather_Test.API;
 
 namespace Weather_Test
 {   
@@ -8,11 +6,11 @@ namespace Weather_Test
     {
         static void Main()
         {
-            //get and return weather status/rating for dogs
+            //Initialize : get and return weather status/rating for dogs
+            //Then send sms message to user
             WeatherRating weatherRating = new WeatherRating();
-
             MessagingAPI messagingApi = new MessagingAPI();
-
+            //Main execution
             messagingApi.SendMessage(weatherRating.WeatherRatingPrint());
 
             //weatherRating.WeatherRatingPrint();
